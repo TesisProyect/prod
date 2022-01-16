@@ -28,10 +28,8 @@ services:
     image: nginx:alpine
 
   auth-svc:
-    container_name: auth-app
+    container_name: app1-auth-app
     build: ./app1/auth
-    ports:
-      - "4000:443"
     restart: always
     depends_on:
       - redis-svc
@@ -49,21 +47,17 @@ services:
     container_name: ierec-app
     build: ./app1/client
     restart: always
-    ports:
-      - "4003:443"
     networks:
       app_net:
     env_file:
-      - ./app1/client/.env
+      - ./app1/client/.env.production
     volumes:
       - "$PWD/cert:/usr/src/app/cert"
     image: ierec-app
 
   course-svc:
-    container_name: course-svc
+    container_name: app1-course-svc
     build: ./app1/course
-    ports:
-      - "4001:443"
     networks:
       app_net:
     env_file:
@@ -74,17 +68,34 @@ services:
       - "$PWD/cert:/usr/src/app/cert"
     image: course-svc
 
-  # ierec-app2:
-  #   container_name: ierec-app2
-  #   build: ./app2
-  #   restart: always
-  #   ports:
-  #     - "4009:4000"
-  #   networks:
-  #     app_net:
-  #   env_file:
-  #     - ./app2/.env
-  #   image: ierec-app2
+  settings_svc:
+    container_name: app1-settings-svc
+    build: ./app1/settings
+    networks:
+      app_net:
+    env_file:
+      - ./app1/settings/.env.production
+    image: settings-svc
+
+  ierec-app2:
+    container_name: app2-ierec-app
+    build: ./app2
+    restart: always
+    networks:
+      app_net:
+    env_file:
+      - ./app2/.env
+    image: ierec-app2
+
+  webinar_svc:
+    container_name: webinar-app
+    build: ./webinar
+    restart: always
+    networks:
+      app_net:
+    env_file:
+      - ./webinar/.env.production
+    image: webinar-app3
 
 volumes:
   redis_vol:
