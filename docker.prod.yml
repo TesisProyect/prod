@@ -87,6 +87,8 @@ services:
       app_net:
     env_file:
       - ./app2/.env
+    volumes:
+      - "$PWD/cert:/usr/src/app/cert"
     image: ierec-app2
 
   webinar_svc:
