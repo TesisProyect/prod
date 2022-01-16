@@ -75,6 +75,8 @@ services:
       app_net:
     env_file:
       - ./app1/settings/.env.production
+    volumes:
+      - "$PWD/cert:/usr/src/app/cert"
     image: settings_svc
 
   ierec-app2:
