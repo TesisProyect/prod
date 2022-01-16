@@ -28,7 +28,7 @@ services:
     image: nginx:alpine
 
   auth-svc:
-    container_name: app1-auth-app
+    container_name: auth_svc
     build: ./app1/auth
     restart: always
     depends_on:
@@ -41,7 +41,7 @@ services:
       - "$PWD/logs/auth:/usr/src/app/logs"
       - "$PWD/files/app1/auth:/usr/src/app/files"
       - "$PWD/cert:/usr/src/app/cert"
-    image: auth-app
+    image: auth_svc
 
   ierec-app:
     container_name: ierec-app
@@ -56,7 +56,7 @@ services:
     image: ierec-app
 
   course-svc:
-    container_name: app1-course-svc
+    container_name: course_svc
     build: ./app1/course
     networks:
       app_net:
@@ -66,16 +66,16 @@ services:
       - "$PWD/logs/courses:/usr/src/app/logs"
       - "$PWD/files/app1/courses:/usr/src/app/files"
       - "$PWD/cert:/usr/src/app/cert"
-    image: course-svc
+    image: course_svc
 
   settings_svc:
-    container_name: app1-settings-svc
+    container_name: settings_svc
     build: ./app1/settings
     networks:
       app_net:
     env_file:
       - ./app1/settings/.env.production
-    image: settings-svc
+    image: settings_svc
 
   ierec-app2:
     container_name: app2-ierec-app
@@ -88,14 +88,17 @@ services:
     image: ierec-app2
 
   webinar_svc:
-    container_name: webinar-app
+    container_name: webinar_svc
     build: ./webinar
     restart: always
     networks:
       app_net:
     env_file:
       - ./webinar/.env.production
-    image: webinar-app3
+    volumes:
+      - "$PWD/files/webinar:/usr/src/app/storage"
+      - "$PWD/cert:/usr/src/app/cert"
+    image: webinar_svc
 
 volumes:
   redis_vol:
