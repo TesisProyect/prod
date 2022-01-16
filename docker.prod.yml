@@ -78,7 +78,7 @@ services:
     image: settings_svc
 
   ierec-app2:
-    container_name: app2-ierec-app
+    container_name: ierec-app2
     build: ./app2
     restart: always
     networks:
