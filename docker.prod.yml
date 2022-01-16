@@ -50,7 +50,7 @@ services:
     networks:
       app_net:
     env_file:
-      - ./app1/client/.env.production
+      - ./app1/client/.env
     volumes:
       - "$PWD/cert:/usr/src/app/cert"
     image: ierec-app
