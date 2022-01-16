@@ -1,0 +1,50 @@
+{
+    "name": "settings",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "format": "prettier --write .",
+        "lint": "eslint --fix .",
+        "dev": "webpack --config webpack/webpack.config --env env=dev",
+        "start": "node ./dist/bundle.js",
+        "build": "rm -rf ./dist && webpack --config webpack/webpack.config --env env=prod"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.12",
+        "@types/cron": "^1.7.3",
+        "@types/express": "^4.17.13",
+        "@types/pg": "^8.6.3",
+        "@types/winston": "^2.4.4",
+        "@typescript-eslint/eslint-plugin": "^5.8.1",
+        "@typescript-eslint/parser": "^5.8.1",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^5.2.0",
+        "eslint-webpack-plugin": "^3.1.1",
+        "nodemon-webpack-plugin": "^4.7.0",
+        "prettier": "^2.5.1",
+        "stylelint-config-prettier": "^9.0.3",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.4",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1",
+        "webpack-dev-server": "^4.7.2",
+        "webpack-merge": "^5.8.0",
+        "webpack-node-externals": "^3.0.0"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "cron": "^1.8.2",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "helmet": "^4.6.0",
+        "moment": "^2.29.1",
+        "mongodb": "^4.2.2",
+        "pg": "^8.7.1",
+        "winston": "^3.3.3"
+    }
+}

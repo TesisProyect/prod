@@ -1,0 +1,11 @@
+node_modules/
+.vscode/
+files/
+logs/
+src/
+webpack/
+tests/
+.env.development
+.env.test
+jest*
+package-lock.json
