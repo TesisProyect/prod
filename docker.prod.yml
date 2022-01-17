@@ -77,6 +77,7 @@ services:
       - ./app1/settings/.env.production
     volumes:
       - "$PWD/cert:/usr/src/app/cert"
+      - "$PWD/logs:/usr/src/app/logs"
     image: settings_svc
 
   ierec-app2:
